@@ -99,3 +99,17 @@ body {
   color: #777;
   font-size: 13px;
 }
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cairo', sans-serif;
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3); /* خلفية خفيفة لتوضيح النص */
+  padding: 10px 20px;
+  border-radius: 10px;
+}
