@@ -1,10 +1,16 @@
-
 /* إعداد عام */
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #ffffff; /* أبيض */
   color: #000000; /* نص أسود */
+
+  background-color: #fefbf1;
+  opacity: 1;
+  background: radial-gradient(circle, transparent 20%, #fefbf1 20%, #fefbf1 80%, transparent 80%, transparent),
+              radial-gradient(circle, transparent 20%, #fefbf1 20%, #fefbf1 80%, transparent 80%, transparent) 25px 25px,
+              linear-gradient(#f7c600 2px, transparent 2px) 0 -1px,
+              linear-gradient(90deg, #f7c600 2px, #fefbf1 2px) -1px 0;
+  background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
 }
 
 /* البانر */
@@ -24,7 +30,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.4); /* لا تغيير هنا */
+  background: rgba(0, 0, 0, 0.4);
   padding: 15px 0;
 }
 
@@ -48,16 +54,16 @@ body {
 .idea {
   padding: 40px 20px;
   text-align: center;
-  background: #ffffff; /* خلفية بيضاء */
-  color: #000; /* نص أسود */
+  background: transparent;
+  color: #000;
 }
 
 .cards {
   margin-top: 30px;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* يسمح بالانتقال للسطر التالي إذا لم تكفِ المساحة */
-  gap: 20px; /* مسافة بين البطاقات */
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .card {
@@ -65,7 +71,7 @@ body {
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 0 10px #f7c600;
-  width: 150px; /* تصغير العرض */
+  width: 150px;
   color: #000;
 }
 
@@ -82,7 +88,7 @@ body {
 
 /* الفوتر */
 .footer {
-  background-color: #f7c600; /* أصفر */
+  background-color: #f7c600;
   padding: 30px 15px;
   text-align: center;
   color: #000;
