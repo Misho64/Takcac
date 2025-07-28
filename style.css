@@ -1,4 +1,3 @@
-/* Reset basic styles */
 * {
   margin: 0;
   padding: 0;
@@ -6,23 +5,23 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Hero section */
+/* صورة الخلفية */
 .hero {
   position: relative;
   width: 100%;
   height: 100vh;
   background: url("background.png") no-repeat center center/cover;
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
 }
 
+/* شريط التنقل */
 .navbar {
   position: absolute;
   top: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Transparent black */
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 1rem;
   text-align: center;
 }
@@ -31,7 +30,7 @@
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
 }
 
 .navbar a {
@@ -45,62 +44,33 @@
   color: #00ffcc;
 }
 
-.hero-overlay {
-  text-align: center;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 600px;
-}
-
-.hero-overlay h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero-overlay p {
-  font-size: 1.2rem;
-}
-
-/* About section */
-.about {
+/* قسم الفكرة */
+.idea {
   background: linear-gradient(to right, #141e30, #243b55);
   color: white;
-  padding: 4rem 2rem;
+  padding: 3rem 1rem;
   text-align: center;
 }
 
-.about h2 {
+.idea h2 {
   font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.about p {
-  font-size: 1.1rem;
   margin-bottom: 2rem;
 }
 
-/* Cards */
 .cards {
   display: flex;
   justify-content: center;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .card {
   background-color: #1e1e1e;
-  border: 1px solid white;
+  border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
-  width: 280px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
+  width: 250px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .card img {
@@ -108,12 +78,13 @@
   height: auto;
 }
 
-.card-text {
+.card p {
   padding: 1rem;
+  font-size: 1.1rem;
 }
 
-/* Footer */
-footer {
+/* الفوتر */
+.footer {
   background-color: #111;
   color: white;
   padding: 2rem 1rem;
@@ -133,4 +104,8 @@ footer {
 
 .footer-links a:hover {
   color: #00ffcc;
+}
+
+.rights {
+  font-size: 0.9rem;
 }
