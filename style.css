@@ -44,37 +44,34 @@ body {
 }
 
 /* قسم الاااااافكرة */
-.idea {
-  padding: 40px 20px;
-  text-align: center;
-  background: #1e1e1e;
-}
-
-.cards {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-}
-
-.card {
-  background-color: #f9f9f9; /* خلفية فاتحة */
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15); /* ظل خارجي أبيض خفيف */
-  max-width: 300px;
-  color: #111; /* لون النص أسود غامق */
-  border: 1px solid #ddd; /* إطار رمادي فاتح */
-}
-
-.card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.card p {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 16px;
+.idea {  
+  padding: 40px 20px;  
+  text-align: center;  
+  background: #1e1e1e;  
+}  
+  
+.cards {  
+  margin-top: 30px;  
+  display: flex;  
+  justify-content: center;  
+}  
+  
+.card {  
+  background-color: #2c2c2c;  
+  padding: 20px;  
+  border-radius: 12px;  
+  box-shadow: 0 0 10px white;  
+  max-width: 300px;  
+}  
+  
+.card img {  
+  width: 100%;  
+  border-radius: 8px;  
+}  
+  
+.card p {  
+  margin-top: 10px;  
+  font-weight: bold;  
 }
 /* الفوتر */
 .footer {
