@@ -13,7 +13,7 @@ body {
 
 /* الصورة الرئيسية */
 .hero {
-  background-image: url('background.jpg');
+  background-image: url('background.png');
   background-size: cover;
   background-position: center;
   height: 100vh;
