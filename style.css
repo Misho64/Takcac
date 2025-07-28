@@ -56,14 +56,16 @@ body {
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* يسمح بالانتقال للسطر التالي إذا لم تكفِ المساحة */
+  gap: 20px; /* مسافة بين البطاقات */
 }
 
 .card {
-  background-color: #fff8e1; /* خلفية صفراء فاتحة */
-  padding: 20px;
+  background-color: #fff8e1;
+  padding: 15px;
   border-radius: 12px;
-  box-shadow: 0 0 10px #f7c600; /* ظل أصفر */
-  max-width: 300px;
+  box-shadow: 0 0 10px #f7c600;
+  width: 150px; /* تصغير العرض */
   color: #000;
 }
 
