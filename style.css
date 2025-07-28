@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #121212;
-  color: white;
+  background-color: #ffffff; /* أبيض */
+  color: #000000; /* نص أسود */
 }
 
 /* البانر */
@@ -13,7 +13,7 @@ body {
   background-image: url("background.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100% 100%; /* ✅ هذا يجعل الصورة تملىء العرض والارتفاع */
+  background-size: 100% 100%;
   position: relative;
 }
 
@@ -23,7 +23,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.4); /* شفاف */
+  background: rgba(0, 0, 0, 0.4); /* لا تغيير هنا */
   padding: 15px 0;
 }
 
@@ -43,41 +43,46 @@ body {
   font-size: 16px;
 }
 
-/* قسم الاااااافكرة */
-.idea {  
-  padding: 40px 20px;  
-  text-align: center;  
-  background: #1e1e1e;  
-}  
-  
-.cards {  
-  margin-top: 30px;  
-  display: flex;  
-  justify-content: center;  
-}  
-  
-.card {  
-  background-color: #2c2c2c;  
-  padding: 20px;  
-  border-radius: 12px;  
-  box-shadow: 0 0 10px white;  
-  max-width: 300px;  
-}  
-  
-.card img {  
-  width: 100%;  
-  border-radius: 8px;  
-}  
-  
-.card p {  
-  margin-top: 10px;  
-  font-weight: bold;  
+/* قسم الفكرة */
+.idea {
+  padding: 40px 20px;
+  text-align: center;
+  background: #ffffff; /* خلفية بيضاء */
+  color: #000; /* نص أسود */
 }
+
+.cards {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  background-color: #fff8e1; /* خلفية صفراء فاتحة */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #f7c600; /* ظل أصفر */
+  max-width: 300px;
+  color: #000;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.card p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
 /* الفوتر */
 .footer {
-  background-color: #111;
+  background-color: #f7c600; /* أصفر */
   padding: 30px 15px;
   text-align: center;
+  color: #000;
 }
 
 .footer-links {
@@ -89,13 +94,13 @@ body {
 }
 
 .footer-links a {
-  color: #ccc;
+  color: #000;
   text-decoration: none;
   font-size: 14px;
 }
 
 .rights {
-  color: #777;
+  color: #222;
   font-size: 13px;
 }
 
@@ -108,7 +113,7 @@ body {
   color: white;
   font-size: 28px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.3); /* خلفية خفيفة لتوضيح النص */
+  background: rgba(0, 0, 0, 0.3);
   padding: 10px 20px;
   border-radius: 10px;
 }
