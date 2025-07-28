@@ -8,13 +8,41 @@ body {
 
 /* البانر */
 .hero {
+  position: relative;
   width: 100%;
   height: 250px;
   background-image: url("background.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
-  position: relative;
+  overflow: hidden; /* حتى لا يخرج شيء خارج البانر */
+}
+
+/* ✅ الطبقة التي تضيف تلوين فوق الصورة */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 215, 0, 0.25); /* أصفر ذهبي شفاف */
+  z-index: 1;
+}
+
+/* ✅ النص فوق الصورة */
+.hero-text {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cairo', sans-serif;
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 /* شريط التنقل */
@@ -102,18 +130,4 @@ body {
 .rights {
   color: #222;
   font-size: 13px;
-}
-
-.hero-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Cairo', sans-serif;
-  color: white;
-  font-size: 28px;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 10px 20px;
-  border-radius: 10px;
 }
