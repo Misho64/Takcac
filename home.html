@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الرئيسية - مصلح وزنك</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #121212;
+      color: white;
+    }
+
+    /* الشريط العلوي */
+    .topbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 60px;
+      background-color: #1e1e1e;
+      color: #F7C600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      z-index: 1001;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* زر القائمة */
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #F7C600;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1002;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* القائمة الجانبية */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #1e1e1e;
+      padding-top: 80px;
+      transition: right 0.3s ease;
+      z-index: 1000;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar .profile {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .profile img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .sidebar .profile h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #F7C600;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      transition: background-color 0.2s;
+      margin: 5px 20px;
+      border-radius: 10px;
+      background-color: #2c2c2c;
+      text-align: center;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active-link {
+      background-color: #F7C600;
+      color: #121212;
+      font-weight: bold;
+    }
+
+    /* محتوى الصفحة */
+    .content {
+      padding: 100px 20px 20px 20px;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: #1f1f1f;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px #00000070;
+    }
+
+    .card h3 {
+      color: #F7C600;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        font-size: 20px;
+      }
+
+      .sidebar {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الشريط العلوي -->
+  <div class="topbar">🏠 الرئيسية</div>
+
+  <!-- زر القائمة -->
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+  <!-- القائمة الجانبية -->
+  <div class="sidebar" id="sidebar">
+    <div class="profile">
+      <img src="00.png" alt="مشعل سعيد" />
+      <h3>Admin Profile</h3>
+    </div>
+    <a href="home.html" class="active-link">🏠 الرئيسية</a>
+    <a href="target.html">🎯 الوزن المستهدف</a>
+    <a href="add-progress.html">➕ أضف التقدم اليومي</a>
+    <a href="graph.html">📈 المخطط البياني</a>
+    <a href="#" onclick="toggleSidebar()">❌ إغلاق</a>
+  </div>
+
+  <!-- محتوى الصفحة -->
+  <div class="content">
+    <div class="cards-container">
+      <div class="card">
+        <h3>🎯 الوزن المستهدف</h3>
+        <p>70 كجم</p>
+      </div>
+      <div class="card">
+        <h3>📉 الوزن الذي نقصته</h3>
+        <p>5 كجم</p>
+      </div>
+      <div class="card">
+        <h3>⚖️ الوزن المتبقي</h3>
+        <p>10 كجم</p>
+      </div>
+      <div class="card">
+        <h3>⏳ الوقت المتبقي</h3>
+        <p>45 يوم</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const toggleBtn = document.querySelector(".menu-toggle");
+      sidebar.classList.toggle("active");
+      toggleBtn.textContent = sidebar.classList.contains("active") ? "✖" : "☰";
+    }
+  </script>
+</body>
+</html>
