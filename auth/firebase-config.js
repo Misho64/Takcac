@@ -1,11 +1,8 @@
 // firebase-config.js
-
-// استيراد مكتبات Firebase الضرورية من CDN الرسمي
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// تكوين مشروع Firebase الخاص بك
 const firebaseConfig = {
   apiKey: "AIzaSyBqNN4tPd7_mL1id7aeZAENdVnP6B5v9O8",
   authDomain: "tksas-a23d9.firebaseapp.com",
@@ -16,14 +13,8 @@ const firebaseConfig = {
   measurementId: "G-8FT9D6QWMB"
 };
 
-// تهيئة Firebase
 const app = initializeApp(firebaseConfig);
-
-// تهيئة المصادقة (Authentication)
 const auth = getAuth(app);
-
-// تهيئة قاعدة البيانات (Firestore)
 const db = getFirestore(app);
 
-// تصدير المتغيرات لاستخدامها في صفحات أخرى
 export { auth, db };
