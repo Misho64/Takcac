@@ -1,67 +1,34 @@
-// استيراد التهيئة والمصادقة من Firebase
 import { auth, db } from "./firebase-config.js";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
-  doc,
-  setDoc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// 🔹 تسجيل حساب جديد (Register)
-const registerForm = document.querySelector(".register-box");
-if (registerForm) {
-  registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+const form = document.getElementById("register-form");
 
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // منع إعادة تحميل الصفحة
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+  const displayName = document.getElementById("displayName").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-      // حفظ اسم المستخدم في Firestore باستخدام UID
-      await setDoc(doc(db, "users", user.uid), {
-        username: username,
-        email: email
-      });
+  try {
+    // إنشاء المستخدم
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-      console.log("✅ تم التسجيل:", user);
-      alert("تم إنشاء الحساب بنجاح 🎉");
-      window.location.href = "login.html";
-    } catch (error) {
-      console.error("❌ خطأ:", error.message);
-      alert("فشل في إنشاء الحساب: " + error.message);
-    }
-  });
-}
+    // حفظ الاسم في Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      displayName: displayName,
+      email: email
+    });
 
-// 🔹 تسجيل الدخول (Login)
-const loginForm = document.querySelector(".login-box");
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // حفظ UID في localStorage لاستخدامه لاحقًا
+    localStorage.setItem("uid", user.uid);
 
-    const email = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // حفظ UID في localStorage
-      localStorage.setItem("uid", user.uid);
-
-      console.log("✅ تم تسجيل الدخول:", user);
-      alert("مرحبًا بك 🎉");
-      window.location.href = "../index.html";
-    } catch (error) {
-      console.error("❌ خطأ:", error.message);
-      alert("فشل تسجيل الدخول: " + error.message);
-    }
-  });
-}
+    // تحويل المستخدم إلى صفحة home
+    window.location.href = "../home.html";
+  } catch (error) {
+    console.error("حدث خطأ:", error.code, error.message);
+    alert("حدث خطأ: " + error.message);
+  }
+});
