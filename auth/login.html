@@ -5,10 +5,6 @@
   <title>تسجيل الدخول</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="login.css">
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 </head>
 <body>
 
@@ -28,34 +24,25 @@
     </form>
   </div>
 
-  <script>
-    // إعداد Firebase
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      appId: "YOUR_APP_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+  <script type="module">
+    import { auth } from "./firebase-config.js";
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    // تسجيل الدخول
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          alert("✅ تم تسجيل الدخول بنجاح");
-          window.location.href = "../index.html"; // الصفحة التي تنتقل لها بعد تسجيل الدخول
-        })
-        .catch((error) => {
-          alert("❌ خطأ: " + error.message);
-        });
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("تم تسجيل الدخول بنجاح ✅");
+        window.location.href = "../index.html"; // غيّر المسار حسب صفحة الهوم الفعلية
+      } catch (error) {
+        alert("خطأ: " + error.message);
+      }
     });
   </script>
-
 </body>
-</html>
+</html> 
