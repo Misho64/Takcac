@@ -1,34 +1,38 @@
-import { auth, db } from "./firebase-config.js";
+import { auth } from "./firebase-config.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const form = document.getElementById("register-form");
+// تهيئة Firestore
+const db = getFirestore();
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault(); // منع إعادة تحميل الصفحة
+// التعامل مع الفورم
+const registerForm = document.getElementById("register-form");
 
-  const displayName = document.getElementById("displayName").value;
-  const email = document.getElementById("email").value;
+registerForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // يمنع إعادة تحميل الصفحة
+
+  const displayName = document.getElementById("displayName").value.trim();
+  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
   try {
-    // إنشاء المستخدم
+    // إنشاء الحساب
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    // حفظ الاسم في Firestore
+    // حفظ الاسم في Firestore مع uid كمفتاح
     await setDoc(doc(db, "users", user.uid), {
-      displayName: displayName,
+      name: displayName,
       email: email
     });
 
-    // حفظ UID في localStorage لاستخدامه لاحقًا
+    // حفظ UID في localStorage
     localStorage.setItem("uid", user.uid);
 
-    // تحويل المستخدم إلى صفحة home
+    // توجيه المستخدم إلى home.html
     window.location.href = "../home.html";
   } catch (error) {
-    console.error("حدث خطأ:", error.code, error.message);
     alert("حدث خطأ: " + error.message);
+    console.error("خطأ في التسجيل:", error);
   }
 });
