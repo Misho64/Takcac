@@ -1,1 +1,73 @@
-ccc
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>الرئيسية - مصلح وزنك</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- الشريط الجانبي -->
+    <aside class="sidebar">
+      <div class="user-info">
+        <p>👋 مرحبًا، <span id="username">جار التحميل...</span></p>
+      </div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="#">🏠 الصفحة الرئيسية</a></li>
+          <li><a href="#">🎯 الوزن المستهدف</a></li>
+          <li><a href="#">➕ إضافة التقدم اليومي</a></li>
+          <li><a href="#">📈 المخطط البياني</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+      <h1>📊 لوحة التحكم</h1>
+      <p>هنا يمكنك متابعة تقدمك وتحديث بياناتك.</p>
+    </main>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+  <!-- إعدادات Firebase -->
+  <script src="auth/firebase-config.js"></script>
+
+  <!-- جلب اسم المستخدم -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { firebaseConfig } from './auth/firebase-config.js';
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const uid = localStorage.getItem("userUID");
+
+    async function fetchUserName() {
+      if (!uid) {
+        document.getElementById("username").textContent = "غير مسجل";
+        return;
+      }
+
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        document.getElementById("username").textContent = userData.displayName || "مستخدم";
+      } else {
+        document.getElementById("username").textContent = "مستخدم غير موجود";
+      }
+    }
+
+    fetchUserName();
+  </script>
+</body>
+</html> 
