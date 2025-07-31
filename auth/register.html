@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>إنشاء حساب</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="register.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="register.css" />
 </head>
 <body>
-
   <div class="register-container">
-    <form class="register-box">
-      <h2>📝 إنشاء حساب جديد</h2>
+    <form class="register-box" id="register-form">
+      <h2>✍️ إنشاء حساب</h2>
+
+      <label for="displayName">🧑 اسم المستخدم:</label>
+      <input type="text" id="displayName" required />
 
       <label for="email">📧 البريد الإلكتروني:</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" required />
 
-      <label for="password">🔒 كلمة المرور:</label>
-      <input type="password" id="password" name="password" required>
+      <label for="password">🔑 كلمة المرور:</label>
+      <input type="password" id="password" required />
 
-      <button type="submit" id="register">✅ تسجيل</button>
+      <button type="submit">➡️ تسجيل</button>
 
       <p class="login-link">لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
     </form>
   </div>
 
-  <script type="module" src="auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
