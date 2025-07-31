@@ -9,32 +9,77 @@
 <body>
 
   <div class="register-container">
-    <form id="registerForm" class="register-box" method="POST" action="../save_user.php">
+    <form id="registerForm" class="register-box">
       <h2>✨ إنشاء حساب جديد ✨</h2>
 
-      <label for="username">👤 اسم المستخدم:</label>
-      <input type="text" id="username" name="username" required>
+      <label for="email">📧 البريد الإلكتروني:</label>
+      <input type="email" id="email" required>
 
       <label for="password">🔒 كلمة المرور:</label>
-      <input type="password" id="password" name="password" minlength="10" required>
+      <input type="password" id="password" minlength="10" required>
 
       <label for="confirmPassword">✅ تأكيد كلمة المرور:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required>
+      <input type="password" id="confirmPassword" required>
 
       <label for="birthdate">📅 تاريخ الميلاد:</label>
-      <input type="date" id="birthdate" name="birthdate" required>
+      <input type="date" id="birthdate" required>
 
       <button type="submit">🚀 تسجيل الحساب</button>
 
       <p class="login-link">لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
     </form>
+
+    <div id="notification" class="hidden"></div>
   </div>
 
-  <script>
-    document.getElementById("registerForm").addEventListener("submit", function(e) {
-      var pass = document.getElementById("password").value;
-      var confirm = document.getElementById("confirmPassword").value;
-      if (pass !== confirm) {
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBqNN4tPd7_mL1id7aeZAENdVnP6B5v9O8",
+      authDomain: "tksas-a23d9.firebaseapp.com",
+      projectId: "tksas-a23d9",
+      storageBucket: "tksas-a23d9.appspot.com",
+      messagingSenderId: "260541042943",
+      appId: "1:260541042943:web:1f8bd26cf07e66aaefbcca",
+      measurementId: "G-8FT9D6QWMB"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const notify = (message, type = "success") => {
+      const el = document.getElementById("notification");
+      el.textContent = message;
+      el.className = type === "success" ? "success" : "error";
+      setTimeout(() => { el.className = "hidden"; }, 2000);
+    };
+
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        notify("كلمة المرور غير متطابقة!", "error");
+        return;
+      }
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        notify("تم إنشاء الحساب بنجاح ✅");
+        setTimeout(() => window.location.href = "../index.html", 2000);
+      } catch (err) {
+        notify("حدث خطأ: " + err.message, "error");
+      }
+    });
+  </script>
+
+</body>
+</html>      if (pass !== confirm) {
         alert("كلمة المرور غير متطابقة!");
         e.preventDefault();
       }
